@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ItemsViewController: UITableViewController {
-    var todoItems: Array<Item>?
+    let realm = try! Realm()
+    var todoItems: Results<Item>?
     var selectedCategory: Category? {
         didSet {
             load()
@@ -16,6 +18,7 @@ class ItemsViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        load()
     }
 
     // MARK: - Table view data source
@@ -34,19 +37,26 @@ class ItemsViewController: UITableViewController {
     
     //MARK: - Data manipulation methods
     
-    private func load(){
-        //load saved items
-    }
-    
-    private func save(item: Item){
+    private func save(item: Item) {
         if item.name.isEmpty { return }
-        if todoItems == nil {
-            todoItems = Array<Item>()
+        guard let currentCategory = selectedCategory else {return}
+        do {
+            try realm.write {
+                currentCategory.items.append(item)
+            }
+        } catch {
+            print("Error saving item, \(error)")
         }
-        todoItems?.append(item)
         
         tableView.reloadData()
     }
+    
+    private func load() {
+        todoItems = selectedCategory?.items.sorted(byKeyPath: "name", ascending: true)
+        
+        tableView.reloadData()
+    }
+    
     
     //MARK: - Add Item
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {
@@ -68,7 +78,7 @@ class ItemsViewController: UITableViewController {
     
     private func addNewCategoryAction(for alert: UIAlertController) {
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            var newItem = Item()
+            let newItem = Item()
             newItem.name = alert.textFields![0].text!
             newItem.createdDate = Date()
             self.save(item: newItem)

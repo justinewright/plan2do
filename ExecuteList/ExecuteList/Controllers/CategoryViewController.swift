@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
-    
-    var categories: Array<Category>?
+    let realm = try! Realm()
+    var categories: Results<Category>?
     
     override func viewDidLoad() {
+        load()
         super.viewDidLoad()
     }
 
@@ -29,16 +31,24 @@ class CategoryViewController: UITableViewController {
     }
     
     //MARK: - Data manipulation methods
-    private func save(category: Category){
+    private func save(category: Category) {
         if category.name.isEmpty { return }
-        if categories == nil {
-            categories = Array<Category>()
+        
+        do {
+            try realm.write {
+                realm.add(category)
+            }
+        } catch {
+            print("Error saving category, \(error)")
         }
-        categories?.append(category)
         
         tableView.reloadData()
     }
     
+    private func load() {
+        categories = realm.objects(Category.self)
+        tableView.reloadData()
+    }
     //MARK: - Add new category method
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -59,9 +69,8 @@ class CategoryViewController: UITableViewController {
     
     private func addNewCategoryAction(for alert: UIAlertController) {
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            let newCategory = Category(
-                name: alert.textFields![0].text! ,
-                items: [])
+            let newCategory = Category()
+            newCategory.name = alert.textFields![0].text!
             self.save(category: newCategory)
         }
         alert.addAction(action)

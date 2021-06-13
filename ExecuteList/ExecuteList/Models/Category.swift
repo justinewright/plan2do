@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Category {
-    let name: String 
-    let items: Array <Item> 
+class Category: Object {
+    @objc dynamic var name: String = ""
+    let items = List <Item>()
 }

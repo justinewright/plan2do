@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Item {
-    var name: String = ""
-    var done: Bool = false
-    var createdDate: Date = Date()
+class Item: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var done: Bool = false
+    @objc dynamic var createdDate: Date?
+    var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
 }
