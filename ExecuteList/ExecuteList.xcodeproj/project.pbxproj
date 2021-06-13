@@ -15,6 +15,8 @@
 		21EAF75626765A2F009F6915 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF75526765A2F009F6915 /* Constants.swift */; };
 		21EAF75826765BCC009F6915 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF75726765BCC009F6915 /* CategoryViewController.swift */; };
 		21EAF75C26765C40009F6915 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF75B26765C40009F6915 /* ItemsViewController.swift */; };
+		21EAF75E26765D04009F6915 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF75D26765D04009F6915 /* Category.swift */; };
+		21EAF76026765D0B009F6915 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF75F26765D0B009F6915 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		21EAF75526765A2F009F6915 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		21EAF75726765BCC009F6915 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		21EAF75B26765C40009F6915 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		21EAF75D26765D04009F6915 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		21EAF75F26765D0B009F6915 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		21EAF75A26765BEE009F6915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				21EAF75D26765D04009F6915 /* Category.swift */,
+				21EAF75F26765D0B009F6915 /* Item.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,7 +185,9 @@
 				21EAF75826765BCC009F6915 /* CategoryViewController.swift in Sources */,
 				21EAF740267658C7009F6915 /* AppDelegate.swift in Sources */,
 				21EAF742267658C7009F6915 /* SceneDelegate.swift in Sources */,
+				21EAF76026765D0B009F6915 /* Item.swift in Sources */,
 				21EAF75626765A2F009F6915 /* Constants.swift in Sources */,
+				21EAF75E26765D04009F6915 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
