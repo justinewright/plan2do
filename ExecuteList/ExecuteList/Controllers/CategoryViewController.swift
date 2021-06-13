@@ -21,13 +21,13 @@ class CategoryViewController: UITableViewController {
         return categories?.count ?? 1
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellID , for: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories added yet"
 
         return cell
     }
+    
     //MARK: - Data manipulation methods
     private func save(category: Category){
         if category.name.isEmpty { return }
@@ -35,8 +35,7 @@ class CategoryViewController: UITableViewController {
             categories = Array<Category>()
         }
         categories?.append(category)
-        print(category.name)
-        print(categories?.count)
+        
         tableView.reloadData()
     }
     
@@ -47,7 +46,6 @@ class CategoryViewController: UITableViewController {
         addNewCategoryAction(for: alert)
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     private func createAlert() -> UIAlertController {
@@ -69,14 +67,19 @@ class CategoryViewController: UITableViewController {
         alert.addAction(action)
     }
     
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.todoListSegueID, sender: self)
+        
     }
-    */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ItemsViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+//            update category
+        }
+        
+    }
+
 
 }
