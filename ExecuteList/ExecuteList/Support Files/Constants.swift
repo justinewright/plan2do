@@ -8,7 +8,8 @@
 import Foundation
 
 struct K {
-    let todoListSegueID = "todoListItems"
-    let cellID = "Cell"
+    static let todoListSegueID = "todoListItems"
+    static let cellID = "Cell"
     
 }
+ 
