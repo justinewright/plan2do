@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ItemsViewController: UITableViewController {
+class ItemsViewController: SwipeViewController {
     let realm = try! Realm()
     var todoItems: Results<Item>?
     var selectedCategory: Category? {
@@ -29,12 +29,24 @@ class ItemsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellID , for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = todoItems?[indexPath.row].name ?? "No Items added yet"
 
         return cell
     }
     
+    //MARK: - Delete category
+    override func updateModel(at indexPath: IndexPath) {
+        if let  itemToDelete = self.todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(itemToDelete)
+                }
+            } catch {
+                print("Error deleting item, \(error)")
+            }
+        }
+    }
     //MARK: - Data manipulation methods
     
     private func save(item: Item) {
@@ -57,6 +69,7 @@ class ItemsViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    //MARK: - Delete item
     
     //MARK: - Add Item
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {

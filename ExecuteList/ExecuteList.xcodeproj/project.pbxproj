@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214387EC26768836001E6481 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214387EB26768836001E6481 /* SwipeViewController.swift */; };
 		21EAF740267658C7009F6915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EAF73F267658C7009F6915 /* AppDelegate.swift */; };
 		21EAF747267658C7009F6915 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21EAF745267658C7009F6915 /* Main.storyboard */; };
 		21EAF749267658C9009F6915 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21EAF748267658C9009F6915 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		214387EB26768836001E6481 /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		21EAF73C267658C7009F6915 /* ExecuteList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecuteList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EAF73F267658C7009F6915 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21EAF746267658C7009F6915 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		21EAF75926765BD5009F6915 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				214387EB26768836001E6481 /* SwipeViewController.swift */,
 				21EAF75726765BCC009F6915 /* CategoryViewController.swift */,
 				21EAF75B26765C40009F6915 /* ItemsViewController.swift */,
 			);
@@ -251,6 +254,7 @@
 				21EAF740267658C7009F6915 /* AppDelegate.swift in Sources */,
 				21EAF76026765D0B009F6915 /* Item.swift in Sources */,
 				21EAF75626765A2F009F6915 /* Constants.swift in Sources */,
+				214387EC26768836001E6481 /* SwipeViewController.swift in Sources */,
 				21EAF75E26765D04009F6915 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
