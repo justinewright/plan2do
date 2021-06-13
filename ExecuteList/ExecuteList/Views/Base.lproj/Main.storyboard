@@ -31,7 +31,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Executer" id="MJc-Ea-5L1">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UXj-4H-cOh"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UXj-4H-cOh">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="rJ1-nB-cXi" id="ynS-r1-tvd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="nJW-T2-8cC" kind="show" identifier="todoListItems" id="30e-Eq-eNe"/>

@@ -25,47 +25,50 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellID , for: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories added yet"
-        
 
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    //MARK: - Data manipulation methods
+    private func save(category: Category){
+        if category.name.isEmpty { return }
+        if categories == nil {
+            categories = Array<Category>()
+        }
+        categories?.append(category)
+        print(category.name)
+        print(categories?.count)
+        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    //MARK: - Add new category method
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = createAlert()
+        addNewCategoryAction(for: alert)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    private func createAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
+        alert.addTextField { (field) in
+            field.placeholder = "Enter category name here"
+        }
+        
+        return alert
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    private func addNewCategoryAction(for alert: UIAlertController) {
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            let newCategory = Category(
+                name: alert.textFields![0].text! ,
+                items: [])
+            self.save(category: newCategory)
+        }
+        alert.addAction(action)
     }
-    */
-
+    
     /*
     // MARK: - Navigation
 
