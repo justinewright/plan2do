@@ -71,14 +71,13 @@ class CategoryViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.todoListSegueID, sender: self)
-        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ItemsViewController
         if let indexPath = tableView.indexPathForSelectedRow {
-//            update category
+            destinationVC.selectedCategory = categories?[indexPath.row]
         }
-        
     }
 
 
