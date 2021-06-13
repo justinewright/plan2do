@@ -69,12 +69,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ExecuteList" id="5jX-8t-UeN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wPx-x4-GRL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wPx-x4-GRL">
+                            <connections>
+                                <action selector="AddButtonPressed:" destination="nJW-T2-8cC" id="PQ3-U0-CHh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feJ-1B-PjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2476.811594202899" y="71.651785714285708"/>
+            <point key="canvasLocation" x="2554" y="15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TLl-Xc-6rI">
