@@ -8,6 +8,7 @@
 import Foundation
 
 struct Item {
-    let name: String = ""
-    let done: Bool = false
+    var name: String = ""
+    var done: Bool = false
+    var createdDate: Date = Date()
 }
