@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 
 class ItemsViewController: SwipeViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
     let realm = try! Realm()
     var todoItems: Results<Item>?
     var selectedCategory: Category? {
@@ -16,9 +17,16 @@ class ItemsViewController: SwipeViewController {
             load()
         }
     }
+    var selectedColor: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         load()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        styleNavBar(color: K.navColours[selectedColor ?? 0]!)
+        searchBar.barTintColor = K.navColours[selectedColor ?? 0]
     }
 
     // MARK: - Table view data source
@@ -31,8 +39,27 @@ class ItemsViewController: SwipeViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = todoItems?[indexPath.row].name ?? "No Items added yet"
-
+        if let item = todoItems?[indexPath.row]{
+            let color = ((item.done ? UIColor(hexString: K.colourCodes[selectedColor ?? 0]) : UIColor.lightGray)?.darken(byPercentage: (CGFloat(indexPath.row)/CGFloat(3*todoItems!.count)) ))!
+            styleCell(cell, with: color )
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = todoItems?[indexPath.row] {
+            do {
+                try realm.write{
+                    item.done = !item.done
+                }
+            } catch {
+                print("Error saving done status \(error)")
+            }
+        }
+        
+        tableView.reloadData()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //MARK: - Delete category
@@ -47,6 +74,7 @@ class ItemsViewController: SwipeViewController {
             }
         }
     }
+    
     //MARK: - Data manipulation methods
     
     private func save(item: Item) {
@@ -69,7 +97,6 @@ class ItemsViewController: SwipeViewController {
         tableView.reloadData()
     }
     
-    //MARK: - Delete item
     
     //MARK: - Add Item
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {

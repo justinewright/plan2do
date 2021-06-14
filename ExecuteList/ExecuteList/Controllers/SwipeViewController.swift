@@ -10,13 +10,24 @@ import SwipeCellKit
 
 class SwipeViewController: UITableViewController, SwipeTableViewCellDelegate {
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
     }
-
+    
+    func styleNavBar(color: UIColor) {
+        guard let navBar = navigationController?.navigationBar else {fatalError("no navbar")}
+        navBar.backgroundColor = color.flatten()
+        navBar.tintColor = UIColor.white
+    }
+    
+    func styleCell(_ cell: UITableViewCell, with colour: UIColor) {
+        cell.backgroundColor = colour
+        //            cell.alpha = CGFloat(index)/(2*CGFloat(categories!.count))
+        cell.textLabel?.textColor = colour.darken(byPercentage: 0.3)
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

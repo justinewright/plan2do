@@ -7,16 +7,21 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class CategoryViewController: SwipeViewController {
     let realm = try! Realm()
     var categories: Results<Category>?
+    var baseColour = K.colourCodes[0]
     
     override func viewDidLoad() {
-        load()
         super.viewDidLoad()
+        load()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        styleNavBar(color: UIColor(hexString: baseColour))
+    }
     // MARK: - Table view data source methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -26,7 +31,7 @@ class CategoryViewController: SwipeViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories added yet"
-
+        styleCell(cell, with: UIColor(hexString: K.colourCodes[indexPath.row % K.colourCodes.count]) )
         return cell
     }
     
@@ -94,11 +99,13 @@ class CategoryViewController: SwipeViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.todoListSegueID, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ItemsViewController
         if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedColor = indexPath.row % K.colourCodes.count
             destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }

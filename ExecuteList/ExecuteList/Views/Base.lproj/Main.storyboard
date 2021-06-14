@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="1629" y="72"/>
         </scene>
-        <!--ExecuteList-->
+        <!--Tasks To Do-->
         <scene sceneID="22D-dk-DUg">
             <objects>
                 <tableViewController id="nJW-T2-8cC" customClass="ItemsViewController" customModule="ExecuteList" customModuleProvider="target" sceneMemberID="viewController">
@@ -76,13 +76,16 @@
                             <outlet property="delegate" destination="nJW-T2-8cC" id="Am7-ki-L0Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ExecuteList" id="5jX-8t-UeN">
+                    <navigationItem key="navigationItem" title="Tasks To Do" id="5jX-8t-UeN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wPx-x4-GRL">
                             <connections>
                                 <action selector="AddButtonPressed:" destination="nJW-T2-8cC" id="PQ3-U0-CHh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="Tkh-QC-A1t" id="L4X-q0-wPM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="feJ-1B-PjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,8 +97,16 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hov-og-eqg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" largeTitles="YES" id="Ogu-8D-4zK">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="107.5"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="1"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="50"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
